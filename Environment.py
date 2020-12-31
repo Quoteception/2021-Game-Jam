@@ -1,5 +1,3 @@
-import sys
-
 class Room():
     def __init__(self, pos, description, inventory=None, entities=None):
         self.pos=pos
@@ -49,12 +47,12 @@ class Map():
         # Adds a opposite exit to added rooms (saves having to do this manually)
         for item in coord_dict.items(): # dict.items = [coord,paths]
             if len(item[1]) > 0:
-            if 'N' in item[1]:
-                # append S to the cell North of the 'N' flagged cell 
-                coord_dict[item[0][0],(item[0][1]+1)].append('S')
-            if 'E' item[1]:
-                # append W to the cell East of the 'E' flagged cell
-                coord_dict[(item[0][0]+1),item[0][1])].append('W')
-        return coord_dict 
+                if 'N' in item[1]:
+                    # append S to the cell North of the 'N' flagged cell 
+                    coord_dict[item[0][0],(item[0][1]+1)].append('S')
+                if 'E' in item[1]:
+                    # append W to the cell East of the 'E' flagged cell
+                    coord_dict[(item[0][0]+1),(item[0][1])].append('W')
+        return coord_dict
 
 
