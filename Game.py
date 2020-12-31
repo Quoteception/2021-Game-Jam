@@ -6,14 +6,14 @@ class Room():
         self.entities=entities
         self.exits={"north":False, "south":False, "east":False, "west":False}
 
-    def set_exits():
+    def set_exits(self, exits):
         """ init exits """
         if exits isinstance(list):
             for e in exits:
-                if e[0] in self.exits.keys():
+                if e in self.exits.keys():
                     self.exits[e[0]]=True
 
-    def get_look():
+    def get_look(self):
         """ out descrpiton 
         """
         pass 
