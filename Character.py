@@ -7,7 +7,8 @@ class Player():
         self.history = history
     def update_player_pos(self, direction):
         """ Turns the player position tuple into a list then updates the
-            values depending on the given direction 
+            values depending on the given direction.
+            Also stores a list of previously visited rooms
 
             Parameters
             ----------
@@ -43,6 +44,8 @@ class Player():
             return False
     
     def back_update(self):
+        """ Removes the last visted room and returns player to the previous room
+        """
         if len(self.history) == 1:
             print("You can not go back!")
         elif len(self.history) == 2:
