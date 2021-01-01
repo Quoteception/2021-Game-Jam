@@ -53,9 +53,9 @@ def user_quit(word1_2):
         return True  # signal that we want to quit
 
 def game_complete():
-        """ Checks game state to see if the game is complete 
+        """ Checks game state to see if the game is complete
         """
-        if player_pos == n.rooms[(0,5)]:
+        if player_pos == (0,5):
             print("\n\tCONGLATURATION !!@!1\n\tA WINNER IS YOU!!1")
             return True # signal that we want to end the game
         else:
@@ -70,15 +70,15 @@ print("W.o.S is a new, incredibly boring adventure game.")
 print("Type 'help' if you need help.")
 
 n=Map(coord_setup())
-player_pos = (2,0)
+player_pos = (0,5)
 print(n.return_exit_string(player_pos))
 
 #Game Loop
 finished = False
 while finished == False:
     command = Command().user_input()
-    process_command(command)
-    game_complete()
-    if  process_command(command) or game_complete() == True:
+    state1 = process_command(command)
+    state2 = game_complete()
+    if  state1 or state2 == True:
         finished = True
-print("Thank you for playing. Good bye.")
+print("\nThank you for playing. Good bye.")
