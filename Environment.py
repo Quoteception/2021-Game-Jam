@@ -70,14 +70,22 @@ def coord_setup():
                 coord_dict[(item[0][0]+1),(item[0][1])].append('W')
     return coord_dict
 
-
-n=Map(coord_setup())
-
 def return_exit_string(pos):
+    """ Returns to the user what the possible exits are
+    """
     return_string = "Exits:"
     for valid in n.rooms[(pos)].exits.items():
-        if valid[1] == True:
+        if valid[1] == True: #checks if the value is true, if so add to string
             return_string += " " + str(valid[0])
     return(return_string)
 
+def valid_move(pos):
+    """checks to see if the room the user inputed is valid
+    """
+
+
 #print(n.rooms[(1,1)].exits.keys())
+
+n=Map(coord_setup())
+player_pos = (2,1)
+print(return_exit_string(player_pos))
