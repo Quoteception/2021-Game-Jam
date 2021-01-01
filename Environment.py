@@ -8,37 +8,32 @@ class Room():
         self.exits={"N":False, "S":False, "E":False, "W":False}
     
     def set_exits(self, exits):
-            """ Allow exit setup during map generation
-                exits = list e.g. [N/S/E/W]
-            """
-            while True:
-                try:
-                    if exits[0] is not None:
-                        for e in exits:
-                            if e[0] in self.exits.keys():
-                                self.exits[e[0]] = True
-                    break
-                except IndexError:
-                    break
+        """ Allow exit setup during map generation
+            exits = list e.g. [N/S/E/W]
+        """
+        if exits[0] is not None:
+            for e in exits:
+                if e[0] in self.exits.keys():
+                    self.exits[e[0]] = True
 
 class Map():
     """ Map class set up a grid of co-ordinates 
     """
-    def __init__(self, cells):
+    def init(self, cells):
         self.rooms=set()
         for cell in cells.keys():
             room=Room(cell,None,)
             room.set_exits(cells[cell])
             self.rooms.add(room)
 
-def coord_setup():
+def coord_setup(self):
     HEIGHT=7
     WIDTH=5
     # Enter room co-ordinates 
     path_dict={(0,5):['N'],
                 (0,4):['N','E'],                              (3,4):['N'],
                 (0,3):['N','E'], (1,3):['N','E'],(2,3):['E'], (3,3):['N'],
-                                 (1,2):['N'],
+                                (1,2):['N'],
                 (0,1):['E'],     (1,1):['N','E'], (2,1):['E'],(3,1):['N','E'], (4,1):['N'],
                 (0,0):['N'],                                  (3,0):['N']}
     coord_dict = {} 
@@ -61,9 +56,6 @@ def coord_setup():
     return coord_dict
 
 
-"""
-TEST CODE:
-n = Map(coord_setup())
+n=Map(coord_setup())
 for room in n.rooms:
-    print((str(room.pos))+' with exits '+str(room.exits))
-"""
+    print((str(room.pos))+' with exits '+(room.exits))
