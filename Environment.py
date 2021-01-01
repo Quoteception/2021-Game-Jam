@@ -72,5 +72,12 @@ def coord_setup():
 
 
 n=Map(coord_setup())
-for room in n.rooms:
-    print((str(room.pos))+' with exits '+(room.exits))
+
+def return_exit_string(pos):
+    return_string = "Exits:"
+    for valid in n.rooms[(pos)].exits.items():
+        if valid[1] == True:
+            return_string += " " + str(valid[0])
+    return(return_string)
+
+#print(n.rooms[(1,1)].exits.keys())
