@@ -70,7 +70,6 @@ class Map():
             ----------
             pos: current room positiion 
         """
-        print
         return_string = "Exits:"
         direction = {'N':'north','S':'south','E':'east','W':'west'} #Formatting 
         for path in self.rooms[(pos)].exits.items():

@@ -77,7 +77,7 @@ player1 = Player()
 #Game Loop
 finished = False
 while finished == False:
-    print("\nYou are " + str(n.rooms[player1.position].description) + "\n" +n.return_exit_string(player1.position))
+    print("\nYou are " + str(n.rooms[player1.position].description)[2:-2] + "\n" +n.return_exit_string(player1.position))
     command = Command().user_input()
     state1 = process_command(command)
     state2 = game_complete()

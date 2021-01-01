@@ -1,10 +1,17 @@
 class Command():
+    """This class handles requests to do with the usable commands
+    """
     def __init__ (self):
         self.actions = {
             "go", "quit", "help", "back"
         }
 
     def user_input(self):
+        """ Returns The next command from the user as a tuple
+
+            splits the imput string and runs a small test to see if it word1
+            is a vlaid command.
+        """
         # Initialise word1 and word2 to <None>
         word1 = None        # None is a special Python value that says the variable contains nothing
         word2 = None
