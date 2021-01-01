@@ -20,7 +20,7 @@ def process_command(word1_2):
     elif word1_2[0] == "quit":
         return user_quit(word1_2)
     elif word1_2[0] == "back":
-        pass
+        back_command(word1_2)
 
     return want_to_quit
 
@@ -37,9 +37,13 @@ def go_room(word1_2):
     else:
         print("You can't go that way!")
 
+def back_command(word1_2):
+    if word1_2[1] is not None:
+        print("Back where?")
+        return False
+    else:
+        player1.back_update()
         
-
-
 def user_quit(word1_2):
     """ "Quit" was entered. Check the rest of the command to see whether we really quit the game.
     Parameters
@@ -71,6 +75,7 @@ print("Welcome to the WORLD OF SURVIVE!")
 print("W.o.S is a new, incredibly boring adventure game.")
 print("Type 'help' if you need help.")
 
+#Set up of Map/Room + Player 
 n=Map(coord_setup())
 player1 = Player()
 
