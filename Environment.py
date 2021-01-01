@@ -1,5 +1,7 @@
 
 class Room():
+    """Room class handles the name and descriptio
+    """
     def __init__(self, pos, description=None, inventory=None, entities=None):
         self.pos=pos
         self.description=description
@@ -22,14 +24,29 @@ class Room():
                 break
 
 class Map():
-    """ Map class set up a grid of co-ordinates 
+    """ Map class set up a grid of co-ordinates. #Takes the keys (postions)
+        and assigns each one a room class, then passes it to Room class
     """
     def __init__(self, cells):
-        self.rooms={}
-        for pos in cells.keys():
+        self.rooms={} #initialise dictionary of rooms
+        for pos in cells.keys(): 
             room=Room(pos)
             room.set_exits(cells[pos])
             self.rooms[pos]=room
+            
+    def return_exit_string(pos):
+    """ Returns to the user what the possible exits are
+
+        Parameters
+        ----------
+        pos: current room positiion 
+    """
+    return_string = "Exits:"
+    direction = {'n':'north','s':'south','e':'east','w':'west'} #Formatting 
+    for path in n.rooms[(pos)].exits.items():
+        if path[1]: #checks if the value is true, if so add to string
+            return_string += " " + direction[path[0]]
+    return(return_string)
 
 def coord_setup():
     HEIGHT=6
@@ -70,18 +87,8 @@ def coord_setup():
                 coord_dict[(item[0][0]+1),(item[0][1])].append('W')
     return coord_dict
 
-def return_exit_string(pos):
-    """ Returns to the user what the possible exits are
-    """
-    return_string = "Exits:"
-    for valid in n.rooms[(pos)].exits.items():
-        if valid[1] == True: #checks if the value is true, if so add to string
-            return_string += " " + str(valid[0])
-    return(return_string)
 
-def valid_move(pos):
-    """checks to see if the room the user inputed is valid
-    """
+
 
 
 #print(n.rooms[(1,1)].exits.keys())

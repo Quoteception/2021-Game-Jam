@@ -3,5 +3,5 @@ class Player():
         self.position = position
         
     def update_player_pos():
-        
+        pass
 
