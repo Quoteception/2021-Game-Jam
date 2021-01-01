@@ -32,9 +32,8 @@ def go_room(word1_2):
         word1_2: tuple of two charcters 
         """
     #validate action
-    if word1_2[1] in n.return_exit_string(player_pos): 
-        #update_player_pos
-        pass
+    if word1_2[1] in n.return_exit_string(player1.position):
+        player1.update_player_pos(word1_2[1])
     else:
         print("You can't go that way!")
 
@@ -58,7 +57,7 @@ def user_quit(word1_2):
 def game_complete():
         """ Checks game state to see if the game is complete
         """
-        if player_pos == (0,5):
+        if player1.position == (0,5):
             print("\n\tCONGLATURATION !!@!1\n\tA WINNER IS YOU!!1")
             return True # signal that we want to end the game
         else:
@@ -73,12 +72,12 @@ print("W.o.S is a new, incredibly boring adventure game.")
 print("Type 'help' if you need help.")
 
 n=Map(coord_setup())
-player_pos = (2,0)
-print(n.return_exit_string(player_pos))
+player1 = Player()
 
 #Game Loop
 finished = False
 while finished == False:
+    print("\nYou are " + str(n.rooms[player1.position].description) + "\n" +n.return_exit_string(player1.position))
     command = Command().user_input()
     state1 = process_command(command)
     state2 = game_complete()

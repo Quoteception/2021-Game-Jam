@@ -70,6 +70,7 @@ class Map():
             ----------
             pos: current room positiion 
         """
+        print
         return_string = "Exits:"
         direction = {'N':'north','S':'south','E':'east','W':'west'} #Formatting 
         for path in self.rooms[(pos)].exits.items():
@@ -78,6 +79,15 @@ class Map():
         return(return_string)
 
 def coord_setup():
+    """ One a hard set grid size, add rooms via path dictionary, function adds paths to reduce human error
+
+        Returns a dictionary of all rooms
+
+        Parameters
+        ----------
+        
+    """
+    # Grid size
     HEIGHT=6
     WIDTH=4
     # Enter room co-ordinates 
