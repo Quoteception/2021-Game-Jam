@@ -33,7 +33,7 @@ def coord_setup(self):
 path_dict={(0,5):[], 
     (0,4):['N','E'],
     (2,5):[], # No new S/W exits
-    (2,4):[,'N'],
+    (2,4):['N'],
     (0,3):['N','E'],
     (1,4):[], # No new S/W exits
     (1,3):['N','E'],
