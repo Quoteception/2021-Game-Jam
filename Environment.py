@@ -1,6 +1,5 @@
-
 class Room():
-    """Room class handles the name and descriptio
+    """Room class handles the name and descriptions
     """
     def __init__(self, pos, description=None, inventory=None, entities=None):
         self.pos=pos
@@ -9,9 +8,34 @@ class Room():
         self.entities=entities
         self.exits={"N":False, "S":False, "E":False, "W":False}
     
+    def set_desctription(self, pos):
+        """Input description for each room here, if cell key matches update description
+        """
+        des_dict = { 
+        (0,5):['[TBA]'],#victory
+        (0,4):['[TBA]'],# chase split 2
+        (2,5):['[TBA]'],# dead end 3
+        (2,4):['[TBA]'],# cave path
+        (0,3):['[TBA]'],# left path 2
+        (1,4):['[TBA]'],# centre path
+        (1,3):['[TBA]'],# split path 2
+        (2,3):['[TBA]'],# west path 2
+        (1,2):['in a long, dimly lit path.'],# chase
+        (1,1):['to your south there is a room with a faint glow.'],# west path
+        (2,2):['seems to be a dead-end'],# dead end 2
+        (2,1):['confronted by a 3-way split in the cave, there is a left, centre, and right path. Centre path is blocked but strange noise can be heard beyond...'],# split path
+        (3,1):['in the right path of the cave.'],# right path
+        (3,2):['seems to be a dead-end'],# dead end
+        (1,0):['in a room with glowing key. It looks like you can take it'],# key room
+        (2,0):['infront of the entrance to a cave. The entrance is big and round and is dark inside.'],# entrance
+        }
+        if pos in des_dict.keys():
+            self.description = des_dict[pos]
+
+        
     def set_exits(self, exits):
         """ Allow exit setup during map generation
-            exits = list e.g. [N/S/E/W]
+        exits = list e.g. [N/S/E/W]
         """
         while True:
             try:
@@ -26,12 +50,17 @@ class Room():
 class Map():
     """ Map class set up a grid of co-ordinates. #Takes the keys (postions)
         and assigns each one a room class, then passes it to Room class
+
+        Parameter
+        ---------
+        cells: dictionary of each co-ordinate and what exits it has
     """
     def __init__(self, cells):
         self.rooms={} #initialise dictionary of rooms
         for pos in cells.keys(): 
             room=Room(pos)
             room.set_exits(cells[pos])
+            room.set_desctription(pos)
             self.rooms[pos]=room
             
     def return_exit_string(self, pos):
@@ -43,7 +72,7 @@ class Map():
         """
         return_string = "Exits:"
         direction = {'N':'north','S':'south','E':'east','W':'west'} #Formatting 
-        for path in n.rooms[(pos)].exits.items():
+        for path in self.rooms[(pos)].exits.items():
             if path[1]: #checks if the value is true, if so add to string
                 return_string += " " + direction[path[0]]
         return(return_string)
@@ -82,13 +111,3 @@ def coord_setup():
                 # append W to the cell East of the 'E' flagged cell
                 coord_dict[(item[0][0]+1),(item[0][1])].append('W')
     return coord_dict
-
-
-
-
-
-#print(n.rooms[(1,1)].exits.keys())
-
-n=Map(coord_setup())
-player_pos = (2,1)
-print(n.return_exit_string(player_pos))

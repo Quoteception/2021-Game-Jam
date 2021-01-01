@@ -79,6 +79,6 @@ while finished == False:
     command = Command().user_input()
     state1 = process_command(command)
     state2 = game_complete()
-    if  state1 or state2 == True:
+    if  state1 or state2 == True: #checks if a win/quit state has been reached
         finished = True
 print("\nThank you for playing. Good bye.")
