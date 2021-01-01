@@ -1,5 +1,5 @@
 from Environment import coord_setup, Room, Map
-from Inputs import user_input, user_help
+from Inputs import Command
 from Character import Player
 
 def process_command(word1_2):
@@ -14,11 +14,11 @@ def process_command(word1_2):
     want_to_quit = False
 
     if word1_2[0] == "help":
-        user_help()
+        Command().user_help()
     elif word1_2[0] == "go":
         go_room(word1_2)
     elif word1_2[0] == "quit":
-        user_quit(word1_2)
+        return user_quit(word1_2)
     elif word1_2[0] == "back":
         pass
 
@@ -31,8 +31,9 @@ def go_room(word1_2):
         ----------
         word1_2: tuple of two charcters 
         """
-    if word1_2[1] in return_exit_string(): #validate action
-        update_player_pos
+    if word1_2[1] in n.return_exit_string(player_pos): #validate action
+        #update_player_pos
+        pass
 
         
 
@@ -54,7 +55,7 @@ def user_quit(word1_2):
 def game_complete():
         """ Checks game state to see if the game is complete 
         """
-        if player.pos == n.rooms[(0,5)]:
+        if player_pos == n.rooms[(0,5)]:
             print("\n\tCONGLATURATION !!@!1\n\tA WINNER IS YOU!!1")
             return True # signal that we want to end the game
         else:
@@ -68,11 +69,16 @@ print("Welcome to the WORLD OF SURVIVE!")
 print("W.o.S is a new, incredibly boring adventure game.")
 print("Type 'help' if you need help.")
 
+n=Map(coord_setup())
+player_pos = (2,0)
+print(n.return_exit_string(player_pos))
 
 #Game Loop
 finished = False
 while finished == False:
-    command = user_input()
-    finished = process_command(command)
-    finished = game_complete()
+    command = Command().user_input()
+    process_command(command)
+    game_complete()
+    if  process_command(command) or game_complete() == True:
+        finished = True
 print("Thank you for playing. Good bye.")
