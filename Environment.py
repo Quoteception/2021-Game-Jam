@@ -34,38 +34,34 @@ class Map():
             room.set_exits(cells[pos])
             self.rooms[pos]=room
             
-    def return_exit_string(pos):
-    """ Returns to the user what the possible exits are
+    def return_exit_string(self):
+        """ Returns to the user what the possible exits are
 
-        Parameters
-        ----------
-        pos: current room positiion 
-    """
-    return_string = "Exits:"
-    direction = {'n':'north','s':'south','e':'east','w':'west'} #Formatting 
-    for path in n.rooms[(pos)].exits.items():
-        if path[1]: #checks if the value is true, if so add to string
-            return_string += " " + direction[path[0]]
-    return(return_string)
+            Parameters
+            ----------
+            pos: current room positiion 
+        """
+        return_string = "Exits:"
+        direction = {'n':'north','s':'south','e':'east','w':'west'} #Formatting 
+        for path in n.rooms[(pos)].exits.items():
+            if path[1]: #checks if the value is true, if so add to string
+                return_string += " " + direction[path[0]]
+        return(return_string)
 
 def coord_setup():
     HEIGHT=6
     WIDTH=4
     # Enter room co-ordinates 
-    path_dict={(0,5):[], 
-    (0,4):['N','E'],
-    (2,5):[], # No new S/W exits
+    path_dict={
+    (0,4):['N','E'],   
     (2,4):['N'],
-    (0,3):['N','E'],
-    (1,4):[], # No new S/W exits
+    (0,3):['N','E'],   
     (1,3):['N','E'],
     (2,3):['N'],
     (1,2):['N'],
     (1,1):['N','E'],
-    (2,2):[], # No new S/W exits
     (2,1):['N','E'],
     (3,1):['N'],
-    (3,2):[], # No new S/W exits
     (1,0):['N'],
     (2,0):['N']}
     # Mask paths to co-ordinates in a 4x6 grid

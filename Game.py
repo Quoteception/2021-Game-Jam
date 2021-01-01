@@ -31,7 +31,8 @@ def go_room(word1_2):
         ----------
         word1_2: tuple of two charcters 
         """
-    if word1_2[1] in return_exit_string(pos)
+    if word1_2[1] in return_exit_string(): #validate action
+        update_player_pos
 
         
 
@@ -66,6 +67,7 @@ print()
 print("Welcome to the WORLD OF SURVIVE!")
 print("W.o.S is a new, incredibly boring adventure game.")
 print("Type 'help' if you need help.")
+
 
 #Game Loop
 finished = False
