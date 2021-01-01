@@ -1,6 +1,6 @@
 
 class Room():
-    def __init__(self, pos, description, inventory=None, entities=None):
+    def __init__(self, pos, description=None, inventory=None, entities=None):
         self.pos=pos
         self.description=description
         self.inventory=inventory
@@ -20,23 +20,32 @@ class Map():
     """ Map class set up a grid of co-ordinates 
     """
     def init(self, cells):
-        self.rooms=set()
+        self.rooms={}
         for cell in cells.keys():
-            room=Room(cell,None,)
-            room.set_exits(cells[cell])
-            self.rooms.add(room)
+            room=Room(pos)
+            room.set_exits(cells[pos])
+            self.rooms[pos]=room
 
 def coord_setup(self):
-    HEIGHT=7
-    WIDTH=5
+    HEIGHT=6
+    WIDTH=4
     # Enter room co-ordinates 
-    path_dict={(0,5):['N'],
-                (0,4):['N','E'],                              (3,4):['N'],
-                (0,3):['N','E'], (1,3):['N','E'],(2,3):['E'], (3,3):['N'],
-                                (1,2):['N'],
-                (0,1):['E'],     (1,1):['N','E'], (2,1):['E'],(3,1):['N','E'], (4,1):['N'],
-                (0,0):['N'],                                  (3,0):['N']}
-    coord_dict = {} 
+path_dict={(0,5):[], 
+    (0,4):['N','E'],
+    (2,5):[], # No new S/W exits
+    (2,4):[,'N'],
+    (0,3):['N','E'],
+    (1,4):[], # No new S/W exits
+    (1,3):['N','E'],
+    (2,3):['N'],
+    (1,2):['N'],
+    (1,1):['N','E'],
+    (2,2):[], # No new S/W exits
+    (2,1):['N','E'],
+    (3,1):['N'],
+    (3,2):[], # No new S/W exits
+    (1,0):['N'],
+    (2,0):['N']}
     # Mask paths to co-ordinates in a 5x7 grid 
     for y in range(HEIGHT):
         for x in range(WIDTH):
