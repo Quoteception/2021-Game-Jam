@@ -31,9 +31,12 @@ def go_room(word1_2):
         ----------
         word1_2: tuple of two charcters 
         """
-    if word1_2[1] in n.return_exit_string(player_pos): #validate action
+    #validate action
+    if word1_2[1] in n.return_exit_string(player_pos): 
         #update_player_pos
         pass
+    else:
+        print("You can't go that way!")
 
         
 
@@ -70,7 +73,7 @@ print("W.o.S is a new, incredibly boring adventure game.")
 print("Type 'help' if you need help.")
 
 n=Map(coord_setup())
-player_pos = (0,5)
+player_pos = (2,0)
 print(n.return_exit_string(player_pos))
 
 #Game Loop
