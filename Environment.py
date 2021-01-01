@@ -12,20 +12,20 @@ class Room():
         """Input description for each room here, if cell key matches update description
         """
         des_dict = { 
-            (0,5):['[TBA]'],
-            (0,4):['[TBA]'], 
-            (2,5):['[TBA]'], 
-            (2,4):['[TBA]'], 
-            (0,3):['[TBA]'], 
-            (1,4):['[TBA]'], 
-            (1,3):['[TBA]'], 
-            (2,3):['[TBA]'], 
+            (0,5):['standing on the other side of the tunnel. You made it!'],
+            (0,4):['at another split path, there is a path to your north and east.'], 
+            (2,5):['what seems to be at a dead-end.'], 
+            (2,4):['in a path within the cave.'], 
+            (0,3):['in a room within the cave.'], 
+            (1,4):['at an elbow in the cave.'], 
+            (1,3):['at another forked road.'], 
+            (2,3):['at an elbow in the cave.'], 
             (1,2):['in a long, dimly lit path.'],
-            (1,1):['to your south there is a room with a faint glow.'], 
-            (2,2):['seems to be a dead-end'], 
-            (2,1):['confronted by a 3-way split in the cave, there is a left, centre, and right path. Centre path is blocked but strange noise can be heard beyond...'],
-            (3,1):['in the right path of the cave.'], 
-            (3,2):['seems to be a dead-end'], 
+            (1,1):['in a wider cavern. To your south there is a room with a faint glow.'], 
+            (2,2):['what seems to be a dead-end'], 
+            (2,1):['confronted by a 3-way split in the cave, there is a west, north, and east path. A strange noise can be heard beyond...'],
+            (3,1):['in the east path of the cave.'], 
+            (3,2):['seems to be at a dead-end'], 
             (1,0):['in a room with glowing key. It looks like you can take it'], 
             (2,0):['infront of the entrance to a cave. The entrance is big and round and is dark inside.']} 
         
