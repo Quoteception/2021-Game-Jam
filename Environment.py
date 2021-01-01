@@ -34,7 +34,7 @@ class Map():
             room.set_exits(cells[pos])
             self.rooms[pos]=room
             
-    def return_exit_string(self):
+    def return_exit_string(self, pos):
         """ Returns to the user what the possible exits are
 
             Parameters
@@ -42,7 +42,7 @@ class Map():
             pos: current room positiion 
         """
         return_string = "Exits:"
-        direction = {'n':'north','s':'south','e':'east','w':'west'} #Formatting 
+        direction = {'N':'north','S':'south','E':'east','W':'west'} #Formatting 
         for path in n.rooms[(pos)].exits.items():
             if path[1]: #checks if the value is true, if so add to string
                 return_string += " " + direction[path[0]]
@@ -91,4 +91,4 @@ def coord_setup():
 
 n=Map(coord_setup())
 player_pos = (2,1)
-print(return_exit_string(player_pos))
+print(n.return_exit_string(player_pos))
