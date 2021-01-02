@@ -29,8 +29,8 @@ def go_room(word1_2):
         room, otherwise print an error message.
         Parameters
         ----------
-        word1_2: tuple of two charcters 
-        """
+        word1_2: tuple of two integers 
+    """
     #validate action
     if word1_2[1] in n.return_exit_string(player1.position):
         player1.update_player_pos(word1_2[1])
@@ -38,6 +38,10 @@ def go_room(word1_2):
         print("You can't go that way!")
 
 def back_command(word1_2):
+    """ Determines if correct input has been made to activated command
+        ----------
+        word1_2: tuple of two integers 
+    """
     if word1_2[1] is not None:
         print("Back where?")
         return False
@@ -66,8 +70,6 @@ def game_complete():
             return True # signal that we want to end the game
         else:
             return False 
-
-
 
 #Print out the opening message for the player
 print()

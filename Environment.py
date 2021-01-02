@@ -1,12 +1,23 @@
 class Room():
     """Room class handles the name and descriptions
     """
-    def __init__(self, pos, description=None, inventory=None, entities=None):
+    def __init__(self, pos, description=None, items=[], entities=None):
         self.pos=pos
         self.description=description
-        self.inventory=inventory
+        self.items=items
         self.entities=entities
         self.exits={"N":False, "S":False, "E":False, "W":False}
+
+    def set_items(self, pos):
+        """ Input description for each room here, if cell key matches update item list
+        """
+        items_dict = {
+            (1,0):['Glowing key']
+            }
+
+        if pos in items_dict.keys():
+            self.items.append(items_dict[pos])
+
     
     def set_desctription(self, pos):
         """Input description for each room here, if cell key matches update description
@@ -61,6 +72,7 @@ class Map():
             room=Room(pos)
             room.set_exits(cells[pos])
             room.set_desctription(pos)
+            room.set_items(pos)
             self.rooms[pos]=room
             
     def return_exit_string(self, pos):

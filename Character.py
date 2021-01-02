@@ -2,9 +2,11 @@ class Player():
     """ The player class is tbe base class for all entinties in the game. Including NPCs as well as monsters each class/subclass
         is able to have thier own position and inventory 
     """
-    def __init__(self, position=(2,0), history=[(2,0)]):
+    def __init__(self, position=(2,0), history=[(2,0)], inventory=[]):
         self.position = position
         self.history = history
+        self.inventory = inventory
+        
     def update_player_pos(self, direction):
         """ Turns the player position tuple into a list then updates the
             values depending on the given direction.
