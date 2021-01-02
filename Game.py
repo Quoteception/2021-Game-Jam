@@ -21,12 +21,15 @@ def process_command(word1_2):
         return user_quit(word1_2)
     elif word1_2[0] == "back":
         back_command(word1_2)
+    elif word1_2[0] == "take":
+        take_item(word1_2)
 
     return want_to_quit
 
 def go_room(word1_2):
     """ Try to in to one direction. If there is an exit, enter the new
         room, otherwise print an error message.
+
         Parameters
         ----------
         word1_2: tuple of two integers 
@@ -39,6 +42,8 @@ def go_room(word1_2):
 
 def back_command(word1_2):
     """ Determines if correct input has been made to activated command
+
+        Parameters
         ----------
         word1_2: tuple of two integers 
     """
@@ -47,6 +52,20 @@ def back_command(word1_2):
         return False
     else:
         player1.back_update()
+
+def take_item(word1_2):
+    """ Determines if correct input has been made to activated command
+    
+        Parameters
+        ----------
+        word1_2: tuple of two integers  
+    """
+    #validate action
+    if word1_2[1] in n.return_item_string(player1.position):
+        player1.update_player_inventory(word1_2[1])
+        n.rooms[player1.position].items.remove(word1_2[1])
+    else:
+        print("There is no item here")
         
 def user_quit(word1_2):
     """ "Quit" was entered. Check the rest of the command to see whether we really quit the game.
@@ -84,7 +103,7 @@ player1 = Player()
 #Game Loop
 finished = False
 while finished == False:
-    print("\nYou are " + str(n.rooms[player1.position].description)[2:-2] + "\n" +n.return_exit_string(player1.position))
+    print("\nYou are " + str(n.rooms[player1.position].description)[2:-2] + "\n" + n.return_item_string(player1.position) + "\n" + n.return_exit_string(player1.position))
     command = Command().user_input()
     state1 = process_command(command)
     state2 = game_complete()

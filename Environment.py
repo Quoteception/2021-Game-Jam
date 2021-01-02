@@ -12,11 +12,11 @@ class Room():
         """ Input description for each room here, if cell key matches update item list
         """
         items_dict = {
-            (1,0):['Glowing key']
+            (1,0):['glowing-key']
             }
 
         if pos in items_dict.keys():
-            self.items.append(items_dict[pos])
+            self.items = items_dict[pos]
 
     
     def set_desctription(self, pos):
@@ -88,6 +88,12 @@ class Map():
             if path[1]: #checks if the value is true, if so add to string
                 return_string += " " + direction[path[0]]
         return(return_string)
+
+    def return_item_string(self, pos):
+        item_string = "Items:\n  "
+        for item in self.rooms[(pos)].items:
+            item_string += "." + str(item) + "\n"
+        return(item_string)
 
 def coord_setup():
     """ One a hard set grid size, add rooms via path dictionary, function adds paths to reduce human error

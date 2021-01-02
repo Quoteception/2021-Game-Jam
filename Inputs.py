@@ -3,7 +3,7 @@ class Command():
     """
     def __init__ (self):
         self.actions = {
-            "go", "quit", "help", "back"
+            "go", "quit", "help", "back", "take"
         }
 
     def user_input(self):

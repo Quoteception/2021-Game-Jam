@@ -6,7 +6,7 @@ class Player():
         self.position = position
         self.history = history
         self.inventory = inventory
-        
+
     def update_player_pos(self, direction):
         """ Turns the player position tuple into a list then updates the
             values depending on the given direction.
@@ -56,4 +56,9 @@ class Player():
         elif len(self.history) >= 3 :
             self.history.pop()
             self.position = self.history[-1]
+    
+    def update_player_inventory(self, item):
+        """ Adds item to player inventory
+        """
+        self.inventory.append(item)
             
