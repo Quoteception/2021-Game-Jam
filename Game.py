@@ -23,6 +23,8 @@ def process_command(word1_2):
         back_command(word1_2)
     elif word1_2[0] == "take":
         take_item(word1_2)
+    elif word1_2[0] == "open":
+        open_command(word1_2)
 
     return want_to_quit
 
@@ -66,6 +68,21 @@ def take_item(word1_2):
         n.rooms[player1.position].items.remove(word1_2[1]) #deletes item from room
     else:
         print("There is no item here")
+
+def open_command(word1_2):
+    """ Opens users things (maps,inventory,items)
+        Parameters
+        ----------
+        word1_2: tuple of two integers  
+    """
+    if word1_2[1] is None:
+        print("Open what?")
+        return False
+    elif word1_2[1] == "inventory":
+        print("Inventory:\n  " + str(player1.inventory))
+    else:
+        print("You can't open that!")
+        
         
 def user_quit(word1_2):
     """ "Quit" was entered. Check the rest of the command to see whether we really quit the game.
@@ -91,8 +108,7 @@ def game_complete():
             return False 
 
 #Print out the opening message for the player
-print()
-print("Welcome to the WORLD OF SURVIVE!")
+print("\nWelcome to the WORLD OF SURVIVE!")
 print("W.o.S is a new, incredibly boring adventure game.")
 print("Type 'help' if you need help.")
 

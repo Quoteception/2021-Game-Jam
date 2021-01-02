@@ -102,7 +102,7 @@ def coord_setup():
 
         Parameters
         ----------
-        
+        [N/A]
     """
     # Grid size
     HEIGHT=6
