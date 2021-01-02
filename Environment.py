@@ -9,10 +9,13 @@ class Room():
         self.exits={"N":False, "S":False, "E":False, "W":False}
 
     def set_items(self, pos):
-        """ Input description for each room here, if cell key matches update item list
+        """ Input Items and there starting room here, if cell key matches update item list
+
+            (co-ordinate):[item-name]
         """
         items_dict = {
-            (1,0):['glowing-key']
+            (1,0):['glowing-key'],
+            (2,0):['rock1','rock2','rock3','rock4','rock5','rock6']
             }
 
         if pos in items_dict.keys():
@@ -90,9 +93,9 @@ class Map():
         return(return_string)
 
     def return_item_string(self, pos):
-        item_string = "Items:\n  "
+        item_string = "Items:\n"
         for item in self.rooms[(pos)].items:
-            item_string += "." + str(item) + "\n"
+            item_string += "  --> " + str(item) + "\n"
         return(item_string)
 
 def coord_setup():

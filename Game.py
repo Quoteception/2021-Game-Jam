@@ -65,11 +65,14 @@ def take_item(word1_2):
         word1_2: tuple of two integers  
     """
     #validate action
-    if word1_2[1] in n.return_item_string(player1.position):
-        player1.inventory.append(word1_2[1])
-        n.rooms[player1.position].items.remove(word1_2[1]) #deletes item from room
+    if len(player1.inventory) < weight_limit: #checks players weight limit
+        if word1_2[1] in n.return_item_string(player1.position):
+            player1.inventory.append(word1_2[1])
+            n.rooms[player1.position].items.remove(word1_2[1]) #deletes item from room
+        else:
+            print("That item isn't here")
     else:
-        print("There is no item here")
+        print("You cannot carry this! Inventory is full")
 
 def drop_item(word1_2):
     """ Determines if correct input has been made to activated command
@@ -131,7 +134,7 @@ print("Type 'help' if you need help.")
 #Set up of Map/Room + Player 
 n=Map(coord_setup())
 player1 = Player()
-
+weight_limit = 3
 #Game Loop
 finished = False
 while finished == False:
