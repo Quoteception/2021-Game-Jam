@@ -25,6 +25,8 @@ def process_command(word1_2):
         take_item(word1_2)
     elif word1_2[0] == "open":
         open_command(word1_2)
+    elif word1_2[0] == "drop":
+        drop_item(word1_2)
 
     return want_to_quit
 
@@ -68,6 +70,20 @@ def take_item(word1_2):
         n.rooms[player1.position].items.remove(word1_2[1]) #deletes item from room
     else:
         print("There is no item here")
+
+def drop_item(word1_2):
+    """ Determines if correct input has been made to activated command
+    
+        Parameters
+        ----------
+        word1_2: tuple of two integers  
+    """
+    if word1_2[1] in player1.inventory:
+        player1.inventory.remove(word1_2[1])
+        n.rooms[player1.position].items.append(word1_2[1]) #drops item into the current room
+    else:
+        print("You can't drop that!") 
+
 
 def open_command(word1_2):
     """ Opens users things (maps,inventory,items)

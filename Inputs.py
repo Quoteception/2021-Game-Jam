@@ -4,7 +4,7 @@ class Command():
     def __init__ (self):
         #Valid commands
         self.actions = {
-            "go", "quit", "help", "back", "take", "open"
+            "go", "quit", "help", "back", "take", "open", "drop"
         }
 
     def user_input(self):
