@@ -62,8 +62,8 @@ def take_item(word1_2):
     """
     #validate action
     if word1_2[1] in n.return_item_string(player1.position):
-        player1.update_player_inventory(word1_2[1])
-        n.rooms[player1.position].items.remove(word1_2[1])
+        player1.inventory.append(word1_2[1])
+        n.rooms[player1.position].items.remove(word1_2[1]) #deletes item from room
     else:
         print("There is no item here")
         

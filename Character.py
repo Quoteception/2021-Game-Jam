@@ -56,9 +56,3 @@ class Player():
         elif len(self.history) >= 3 :
             self.history.pop()
             self.position = self.history[-1]
-    
-    def update_player_inventory(self, item):
-        """ Adds item to player inventory
-        """
-        self.inventory.append(item)
-            
