@@ -19,7 +19,7 @@ class Room():
             (x,y):[item-name]
         """
         items_dict = {
-            (1,0):['glowing-key'],
+            (1,0):['glowing-orb'],
             (2,0):['rock','rock','rock'],
             (2,2):['sword'],
             (3,2):['map']
