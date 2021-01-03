@@ -71,7 +71,7 @@ def take_item(word1_2):
         word1_2: tuple of two integers  
     """
     if len(player1.inventory) < weight_limit: #checks players weight limit
-        if word1_2[1] in n.return_item_string(player1.position): #validate if the user input exsists
+        if word1_2[1] in n.rooms[player1.position].items: #validate if the user input exsists
             player1.inventory.append(word1_2[1])
             n.rooms[player1.position].items.remove(word1_2[1]) #deletes item from room
         else:
