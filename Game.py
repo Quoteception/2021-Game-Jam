@@ -156,7 +156,7 @@ def teleporter_room():
             if player1.position in valid_rooms.keys(): #checks if co-ordinates are valid room
                 valid = True
             else:
-                pass
+                pass #Do nothing
         print("....you have been teleported")
         
 
@@ -164,7 +164,9 @@ def game_complete():
         """ Checks player position if they have fufilled a win condition
         """
         if player1.position == (0,5):
+            print("\t*@*@*@*@*@*@*@*@*")
             print("\n\tCONGLATURATION !!@!1\n\tA WINNER IS YOU!!1")
+            print("\n\t*@*@*@*@*@*@*@*@*")
             return True # signal that we want to end the game
         else:
             return False 
