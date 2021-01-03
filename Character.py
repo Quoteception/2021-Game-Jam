@@ -27,7 +27,7 @@ class Player():
         """
         update=[]
         self.history.append(self.position)
-        update = list(self.position) #unlocks the tuple briefly so it can be edited
+        update = list(self.position) # "unlocks" co-ordinate briefly to edit
         if direction == 'north':
             update[1]=update[1]+1
         elif direction == 'south':
@@ -36,5 +36,5 @@ class Player():
             update[0]=update[0]+1 
         elif direction == 'west':
             update[0]=update[0]-1
-        self.position = tuple(update)
+        self.position = tuple(update) # "locks" co-ordinate
         return False
