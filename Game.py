@@ -110,9 +110,9 @@ def open_command(word1_2):
                 print("  " + str(player1.inventory.index(item)+1) + ". " + item) #Nicely formats inventory
         else:
             print("  [N/A]")
-    elif word1_2[1] == "map":
+    elif word1_2[1] == "map": 
         if 'map' in player1.inventory:
-            print("Location: " + str(player1.position)) #Needed more time to add print_map function
+            print("Location: " + str(player1.position)) #Needed more time to add print_map function, still useful for the teleporter room
         else:
             print("You do not have a map currently")
     else:
