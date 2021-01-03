@@ -1,5 +1,9 @@
 class Command():
-    """This class handles requests to do with the usable commands
+    """ This class handles requests to do with the usable commands
+
+        Parameter(s)
+        ------------
+        
     """
     def __init__ (self):
         #Valid commands

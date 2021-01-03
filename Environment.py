@@ -1,5 +1,11 @@
 class Room():
-    """Room class handles the name and descriptions
+    """ Room class handles the name and descriptions
+
+        Parameter(s)
+        ------------
+        pos: co-ordinate position (tuple)
+        description: flavour text for the room (list of strings)
+        items: a list of strings for items in a room (list of strings)
     """
     def __init__(self, pos, description=None, items=[]):
         self.pos=pos
@@ -49,13 +55,14 @@ class Room():
         
         if pos in des_dict.keys():
             self.description = des_dict[pos]
+        return des_dict #for later use
 
         
     def set_exits(self, exits):
         """ Allow exit setup during map generation
 
-            Parameters:
-            -----------
+            Parameter(s)
+            ------------
             exits = list e.g. [N/S/E/W]
         """
         while True:
@@ -72,8 +79,8 @@ class Map():
     """ Map class set up a grid of co-ordinates. #Takes the keys (postions)
         and assigns each one a room class, then passes it to Room class
 
-        Parameter
-        ---------
+        Parameter(s)
+        ------------
         cells: dictionary of each co-ordinate and what exits it has
     """
     def __init__(self, cells):
@@ -88,8 +95,8 @@ class Map():
     def return_exit_string(self, pos):
         """ Returns to the user what the possible exits are
 
-            Parameters
-            ----------
+            Parameter(s)
+            ------------
             pos: current room positiion 
         """
         return_string = "Exits:"
@@ -115,8 +122,8 @@ def coord_setup():
 
         Returns a dictionary of all rooms
 
-        Parameters
-        ----------
+        Parameter(s)
+        ------------
         [N/A]
     """
     # Grid size

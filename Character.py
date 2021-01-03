@@ -1,6 +1,12 @@
 class Player():
     """ The player class is tbe base class for all entinties in the game. Including NPCs as well as monsters each class/subclass
-        is able to have thier own position and inventory 
+        is able to have thier own position and inventory
+
+        Parameter(s)
+        ------------
+        position: players current co-ordinate position (tuple)
+        history: a list of previously visited rooms (list)
+        inventory: a list of items currently on the player (list)
     """
     def __init__(self, position, history=[], inventory=[]):
         #Sets starting parameters
@@ -15,35 +21,20 @@ class Player():
 
             Included in seperate file for clarity
 
-            Parameters
-            ----------
+            Parameter(s)
+            ------------
             direction: string
         """
+        update=[]
+        self.history.append(self.position)
+        update = list(self.position) #unlocks the tuple briefly so it can be edited
         if direction == 'north':
-            self.history.append(self.position)
-            update=[]
-            update = list(self.position)
             update[1]=update[1]+1
-            self.position = tuple(update)
-            return False
         elif direction == 'south':
-            self.history.append(self.position)
-            update=[]
-            update = list(self.position)
             update[1]=update[1]-1
-            self.position = tuple(update)
-            return False
         elif direction == 'east':
-            self.history.append(self.position)
-            update=[]
-            update = list(self.position)
-            update[0]=update[0]+1
-            self.position = tuple(update)
-            return False
+            update[0]=update[0]+1 
         elif direction == 'west':
-            self.history.append(self.position)
-            update=[]
-            update = list(self.position)
             update[0]=update[0]-1
-            self.position = tuple(update)
-            return False
+        self.position = tuple(update)
+        return False

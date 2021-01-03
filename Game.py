@@ -1,13 +1,14 @@
 """Main game file. Run from here.
 """
+import random
 from Environment import coord_setup, Room, Map
 from Inputs import Command
 from Character import Player
 
 def process_command(word1_2):
     """ Given a command, process (that is: execute) the command.
-    Parameters
-    ----------
+    Parameter(s)
+    ------------
     command: Command
         The command to be processed
     
@@ -36,8 +37,8 @@ def go_room(word1_2):
     """ Try to in to one direction. If there is an exit, enter the new
         room, otherwise print an error message.
 
-        Parameters
-        ----------
+        Parameter(s)
+        ------------
         word1_2: tuple of two integers 
     """
     #validate action
@@ -49,8 +50,8 @@ def go_room(word1_2):
 def back_command(word1_2):
     """ Determines if correct input has been made to activated command
 
-        Parameters
-        ----------
+        Parameter(s)
+        ------------
         word1_2: tuple of two integers 
     """
     if word1_2[1] is not None:
@@ -65,8 +66,8 @@ def back_command(word1_2):
 def take_item(word1_2):
     """ Adds inputed item to user inventory, then removes it from the room
     
-        Parameters
-        ----------
+        Parameter(s)
+        ------------
         word1_2: tuple of two integers  
     """
     if len(player1.inventory) < weight_limit: #checks players weight limit
@@ -81,8 +82,8 @@ def take_item(word1_2):
 def drop_item(word1_2):
     """ Determines if correct input has been made to activated command
     
-        Parameters
-        ----------
+        Parameter(s)
+        ------------
         word1_2: tuple of two integers  
     """
     if word1_2[1] in player1.inventory:
@@ -95,8 +96,8 @@ def open_command(word1_2):
     """ Opens users things (maps,inventory,items)
         checks the second word of the input and then executes relevant command
 
-        Parameters
-        ----------
+        Parameter(s)
+        ------------
         word1_2: tuple of two integers  
     """
     if word1_2[1] is None:
@@ -104,11 +105,14 @@ def open_command(word1_2):
         return False
     elif word1_2[1] == "inventory":
         print("Inventory:")
-        for item in player1.inventory:
-            print("  " + str(player1.inventory.index(item)+1) + ". " + item) #Nicely formats inventory
+        if len(player1.inventory) != 0:
+            for item in player1.inventory:
+                print("  " + str(player1.inventory.index(item)+1) + ". " + item) #Nicely formats inventory
+        else:
+            print("  [N/A]")
     elif word1_2[1] == "map":
         if 'map' in player1.inventory:
-            print("The map is to faded to read.") #Needed more time to add print_map function
+            print("Location: " + str(player1.position)) #Needed more time to add print_map function
         else:
             print("You do not have a map currently")
     else:
@@ -117,8 +121,9 @@ def open_command(word1_2):
         
 def user_quit(word1_2):
     """ "Quit" was entered. Check the rest of the command to see whether we really quit the game.
-        Parameters
-        ----------
+        
+        Parameter(s)
+        ------------
         word1_2: tuple of two charcters 
     
         Returns true, if this command quits the game, false otherwise.
@@ -128,6 +133,32 @@ def user_quit(word1_2):
         return False
     else:
         return True  # signal that we want to quit
+
+def teleporter_room():
+    """ This function checks if the player is about to enter the teleporter room
+        When the player enters there co-ordinates are randomised in the while loop untill
+        valid co-ordinates are returned.
+    """
+    #Returning height and width from coord_setup causes problems
+    WIDTH = 6
+    HEIGHT = 4
+    valid_rooms = Room((0,0)).set_desctription((0,0)) #returns dictionary of valid rooms to teleport to
+    if player1.position == (1,4): #Location of teleporter room
+        print("A bright light emereges from above as you try to enter....")
+        valid = False
+        update=[]
+        update = list(player1.position)
+        while valid == False:
+            player1.history.clear()
+            update[0]=random.randint(0,WIDTH-1) #Random x co-oridinate (0 to 3)
+            update[1]=random.randint(0,HEIGHT-1) #Random y co-oridinate (0 to 5)
+            player1.position = tuple(update)
+            if player1.position in valid_rooms.keys(): #checks if co-ordinates are valid room
+                valid = True
+            else:
+                pass
+        print("....you have been teleported")
+        
 
 def game_complete():
         """ Checks player position if they have fufilled a win condition
@@ -164,6 +195,7 @@ while finished == False:
     print("\n" + str(n.rooms[player1.position].description)[2:-2] + "\n" + n.return_item_string(player1.position) + "\n" + n.return_exit_string(player1.position))
     command = Command().user_input()
     state1 = process_command(command)
+    teleporter_room()
     state2 = game_complete()
     if  state1 or state2 == True: #checks if a win/quit state has been reached
         finished = True
