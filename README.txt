@@ -49,6 +49,6 @@ Classes:
     """
     
 Special features:
-	Unfortunately, due to unforseen time constraints (having to restart the project due to my group leaving) I haven't been able to add something particualy noteworthy. 
+	Unfortunately, due to unforseen time constraints (having to restart the project due to my group leaving) I haven't been able to add something particualy noteworthy for 	the player to do . 
 	However, I hope the way that I've constructed the layout of the game which allows for very easy room creation as well as editing is a unique way of tackling the task.
 	
