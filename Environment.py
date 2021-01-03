@@ -1,21 +1,22 @@
 class Room():
     """Room class handles the name and descriptions
     """
-    def __init__(self, pos, description=None, items=[], entities=None):
+    def __init__(self, pos, description=None, items=[]):
         self.pos=pos
         self.description=description
         self.items=items
-        self.entities=entities
         self.exits={"N":False, "S":False, "E":False, "W":False}
 
     def set_items(self, pos):
         """ Input Items and there starting room here, if cell key matches update item list
 
-            (co-ordinate):[item-name]
+            (x,y):[item-name]
         """
         items_dict = {
             (1,0):['glowing-key'],
-            (2,0):['rock1','rock2','rock3','rock4','rock5','rock6']
+            (2,0):['rock','rock','rock'],
+            (2,2):['sword'],
+            (3,2):['map']
             }
 
         if pos in items_dict.keys():
@@ -23,25 +24,28 @@ class Room():
 
     
     def set_desctription(self, pos):
-        """Input description for each room here, if cell key matches update description
+        """ Input description for each room here, if cell key matches update description
+
+            (x,y):[room description]
         """
         des_dict = { 
-            (0,5):['standing on the other side of the tunnel. You made it!'],
-            (0,4):['at another split path, there is a path to your north and east.'], 
-            (2,5):['what seems to be at a dead-end.'], 
-            (2,4):['in a path within the cave.'], 
-            (0,3):['in a room within the cave.'], 
-            (1,4):['at an elbow in the cave.'], 
-            (1,3):['at another forked road.'], 
-            (2,3):['at an elbow in the cave.'], 
-            (1,2):['in a long, dimly lit path.'],
-            (1,1):['in a wider cavern. To your south there is a room with a faint glow.'], 
-            (2,2):['what seems to be a dead-end'], 
-            (2,1):['confronted by a 3-way split in the cave, there is a west, north, and east path. A strange noise can be heard beyond...'],
-            (3,1):['in the east path of the cave.'], 
-            (3,2):['seems to be at a dead-end'], 
-            (1,0):['in a room with glowing key. It looks like you can take it'], 
-            (2,0):['infront of the entrance to a cave. The entrance is big and round and is dark inside.']} 
+            (0,5):['You are standing on the other side of the tunnel. You made it!'],
+            (0,4):['You are at another split path, there is a path to your north and east.'], 
+            (2,5):['You are at what seems to be a dead-end.'], 
+            (2,4):['You are in a path within the cave.'], 
+            (0,3):['You are in a room within the cave.'], 
+            (1,4):['You are at an elbow in the cave.'], 
+            (1,3):['You are at another forked road.'], 
+            (2,3):['You are at an elbow in the cave.'], 
+            (1,2):['You are in a long, dimly lit path.'],
+            (1,1):['You are in a wider cavern. To your south there is a room with a faint glow.'], 
+            (2,2):['You are in a room surrounded by 3 bonfires. The words "I hope you are not alone..." are scratched into the wall'], 
+            (2,1):['You are confronted by a 3-way split in the cave, there is a west, north, and east path. A strange noise can be heard beyond...'],
+            (3,1):['You are in the east path of the cave.'], 
+            (3,2):['You are at what seems to be a dead-end'], 
+            (1,0):['You are in a room with glowing torches.'], 
+            (2,0):['You are infront of the entrance to a cave. The entrance is big and round and is dark inside.']
+            } 
         
         if pos in des_dict.keys():
             self.description = des_dict[pos]
@@ -49,7 +53,10 @@ class Room():
         
     def set_exits(self, exits):
         """ Allow exit setup during map generation
-        exits = list e.g. [N/S/E/W]
+
+            Parameters:
+            -----------
+            exits = list e.g. [N/S/E/W]
         """
         while True:
             try:
@@ -94,9 +101,14 @@ class Map():
 
     def return_item_string(self, pos):
         item_string = "Items:\n"
-        for item in self.rooms[(pos)].items:
-            item_string += "  --> " + str(item) + "\n"
-        return(item_string)
+        if len(self.rooms[(pos)].items) != 0:
+            for item in self.rooms[(pos)].items:
+                item_string += "  --> " + str(item) + "\n"
+            return(item_string)
+        else:
+            item_string += "  [N/A]\n" #Shows nothing is in the current room
+            return(item_string) 
+
 
 def coord_setup():
     """ One a hard set grid size, add rooms via path dictionary, function adds paths to reduce human error
@@ -110,7 +122,7 @@ def coord_setup():
     # Grid size
     HEIGHT=6
     WIDTH=4
-    # Enter room co-ordinates 
+    # Enter room co-ordinates of rooms with North + East exits
     path_dict={
     (0,4):['N','E'],   
     (2,4):['N'],

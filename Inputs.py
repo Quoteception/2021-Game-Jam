@@ -18,7 +18,7 @@ class Command():
         word2 = None
 
         input_line = input("> ").lower()
-
+        print()
         # Find up to two words on the line and set word1 and word2 appropriately
         tokens = input_line.strip().split( " " )
         if len( tokens ) > 0:
@@ -33,7 +33,7 @@ class Command():
 
     def user_help(self):
         """ Print out some help information. """
-        print("You are lost. You are alone. You wander....\n")
+        print("You are lost. You are alone. You wander....")
         print("Your command words are:")
         for command in self.actions:
                 print( command + " ", end="" )  
