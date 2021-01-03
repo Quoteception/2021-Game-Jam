@@ -1,4 +1,5 @@
-"""Main game file. Run from here.
+""" Main game file. 
+    Run from here.
 """
 import random
 from Environment import coord_setup, Room, Map
