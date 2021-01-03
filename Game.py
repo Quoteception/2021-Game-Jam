@@ -98,7 +98,9 @@ def open_command(word1_2):
         print("Open what?")
         return False
     elif word1_2[1] == "inventory":
-        print("Inventory:\n  " + str(player1.inventory))
+        print("Inventory:")
+        for item in player1.inventory:
+            print("  " + str(player1.inventory.index(item)+1) + ". " + item) #Nicely formats inventory
     else:
         print("You can't open that!")
         
